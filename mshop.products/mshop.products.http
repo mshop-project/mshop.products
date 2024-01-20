@@ -1,6 +1,0 @@
-@mshop.products_HostAddress = http://localhost:5239
-
-GET {{mshop.products_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
