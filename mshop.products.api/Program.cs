@@ -1,6 +1,12 @@
+using mshop.products.application;
+using mshop.products.infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services
+    .AddInfrastructure(builder.Configuration)
+    .AddApplication();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

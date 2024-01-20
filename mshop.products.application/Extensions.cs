@@ -4,9 +4,9 @@ namespace mshop.products.application
 {
     public static class Extensions
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services)
+        public static void AddApplication(this IServiceCollection services)
         {
-            return services;
+            
         }
     }
 }
