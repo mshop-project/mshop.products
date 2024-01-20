@@ -9,6 +9,7 @@ namespace mshop.products.application.Mapper.Categories
         public CategoryProfile()
         { 
             CreateMap <CreateCategoryDto, Category>();
+            CreateMap <Category, ReadCategoryDto>();
         }
     }
 }
