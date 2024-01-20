@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using mshop.products.application.Commands.Products.CreateProduct;
 using mshop.products.application.DTOs.Products;
+using mshop.products.application.Queries.Categories.GetCategories;
+using mshop.products.application.Queries.Products;
 
 namespace mshop.products.api.Controllers
 {
@@ -23,6 +25,11 @@ namespace mshop.products.api.Controllers
             return Ok();
         }
 
-
+        [HttpGet("")]
+        public async Task<IActionResult> GetProducts()
+        {
+            var result = await _mediator.Send(new GetProductsQuery());
+            return Ok(result);
+        }
     }
 }
