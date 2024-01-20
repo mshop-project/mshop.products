@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using mshop.products.application.Mapper.Categories;
+using mshop.products.application.Mapper.Products;
 
 namespace mshop.products.application
 {
@@ -18,6 +19,7 @@ namespace mshop.products.application
             {
                 var scope = provider.CreateScope();
                 cfg.AddProfile(new CategoryProfile());
+                cfg.AddProfile(new ProductProfile());
             }).CreateMapper()
 
             );

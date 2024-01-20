@@ -23,7 +23,7 @@ namespace mshop.products.application.Commands.Categories.CreateCategory
 
         public async Task Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
-            var category = _mapper.Map<Category>(request.categoryDto);
+            var category = _mapper.Map<Category>(request.CategoryDto);
 
             await _categoriesRepository.CreateAsync(category);
         }

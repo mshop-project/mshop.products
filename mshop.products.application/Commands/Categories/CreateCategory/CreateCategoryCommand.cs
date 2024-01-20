@@ -3,5 +3,5 @@ using mshop.products.application.DTOs.Categories;
 
 namespace mshop.products.application.Commands.Categories.CreateCategory
 {
-    public sealed record CreateCategoryCommand(CreateCategoryDto categoryDto) : IRequest;
+    public sealed record CreateCategoryCommand(CreateCategoryDto CategoryDto) : IRequest;
 }
