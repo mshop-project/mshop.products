@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using mshop.products.domain.Repositories.Categories;
 using mshop.products.infrastructure.Persistence;
+using mshop.products.infrastructure.Repositories.Categories;
 
 namespace mshop.products.infrastructure
 {
@@ -9,8 +11,9 @@ namespace mshop.products.infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            return services.AddDbContext<ProductsDbContext>(options => options.UseNpgsql(
-                configuration.GetConnectionString("ProductsDatabase")));
+            return services
+                .AddDbContext<ProductsDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("ProductsDatabase")))
+                .AddScoped<ICategoriesRepository, CategoriesRepository>();
         }
     }
 }
