@@ -30,6 +30,8 @@ namespace mshop.products.infrastructure.Persistence
 
                 entity.Property(p => p.Description);
 
+                entity.Property(p => p.ImageUrl);
+
                 entity.Property(p => p.Price)
                     .IsRequired();
 
