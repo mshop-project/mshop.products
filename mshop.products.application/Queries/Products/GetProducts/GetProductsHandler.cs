@@ -4,7 +4,7 @@ using mshop.products.application.DTOs.Categories;
 using mshop.products.application.DTOs.Products;
 using mshop.products.domain.Repositories.Products;
 
-namespace mshop.products.application.Queries.Products
+namespace mshop.products.application.Queries.Products.GetProducts
 {
     internal class GetProductsHandler : IRequestHandler<GetProductsQuery, IEnumerable<ReadProductDto>>
     {

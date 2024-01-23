@@ -4,6 +4,8 @@ using mshop.products.application.Commands.Products.CreateProduct;
 using mshop.products.application.DTOs.Products;
 using mshop.products.application.Queries.Categories.GetCategories;
 using mshop.products.application.Queries.Products;
+using mshop.products.application.Queries.Products.GetProducts;
+using mshop.products.application.Queries.Products.GetProductsByIds;
 
 namespace mshop.products.api.Controllers
 {
@@ -26,9 +28,18 @@ namespace mshop.products.api.Controllers
         }
 
         [HttpGet("")]
+        [ProducesResponseType(200, Type = typeof(ReadProductDto))]
         public async Task<IActionResult> GetProducts()
         {
             var result = await _mediator.Send(new GetProductsQuery());
+            return Ok(result);
+        }
+
+        [HttpGet("Ids")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ReadProductDto>))]
+        public async Task<IActionResult> GetProductsByIds([FromQuery] List<Guid> ids)
+        {
+            var result = await _mediator.Send(new GetProductsByIdsQuery(ids));
             return Ok(result);
         }
     }

@@ -2,7 +2,7 @@
 
 namespace mshop.products.application.DTOs.Products
 {
-    internal class ReadProductDto
+    public class ReadProductDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = null!;

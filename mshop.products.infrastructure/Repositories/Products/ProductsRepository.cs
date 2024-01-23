@@ -24,5 +24,10 @@ namespace mshop.products.infrastructure.Repositories.Products
         {
             return await _productsDbContext.Products.Include(p => p.Category).ToListAsync();
         }
+
+        public async Task<IEnumerable<Product>> GetByIdsAsync(IEnumerable<Guid> ids)
+        {
+            return await _productsDbContext.Products.Where(product => ids.Contains(product.Id)).Include(p => p.Category).ToListAsync();
+        }
     }
 }
