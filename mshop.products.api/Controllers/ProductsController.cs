@@ -28,7 +28,7 @@ namespace mshop.products.api.Controllers
         }
 
         [HttpGet("")]
-        [ProducesResponseType(200, Type = typeof(ReadProductDto))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ReadProductDto>))]
         public async Task<IActionResult> GetProducts()
         {
             var result = await _mediator.Send(new GetProductsQuery());
