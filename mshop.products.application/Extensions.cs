@@ -7,7 +7,7 @@ namespace mshop.products.application
 {
     public static class Extensions
     {
-        public static void AddApplication(this IServiceCollection services)
+        public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             var assembly = typeof(Extensions).Assembly;
             services.AddMediatR(configuration =>
@@ -23,6 +23,8 @@ namespace mshop.products.application
             }).CreateMapper()
 
             );
+
+            return services;
         }
     }
 }

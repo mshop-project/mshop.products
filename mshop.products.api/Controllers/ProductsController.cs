@@ -42,5 +42,12 @@ namespace mshop.products.api.Controllers
             var result = await _mediator.Send(new GetProductsByIdsQuery(ids));
             return Ok(result);
         }
+
+        [HttpGet("info")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ReadProductDto>))]
+        public IActionResult GetInformation([FromQuery] List<Guid> ids)
+        {
+            return Ok(new { info = "products api" });
+        }
     }
 }
