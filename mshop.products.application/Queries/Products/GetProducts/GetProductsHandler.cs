@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using mshop.products.application.DTOs.Categories;
 using mshop.products.application.DTOs.Products;
 using mshop.products.domain.Repositories.Products;
 

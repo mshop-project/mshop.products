@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\mshop.sharedkernel.coredata\mshop.sharedkernel.coredata.csproj" />
+  </ItemGroup>
+
 </Project>

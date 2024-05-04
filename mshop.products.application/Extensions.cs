@@ -17,11 +17,10 @@ namespace mshop.products.application
 
             services.AddScoped(provider => new MapperConfiguration(cfg =>
             {
-                var scope = provider.CreateScope();
+                using var scope = provider.CreateScope();
                 cfg.AddProfile(new CategoryProfile());
                 cfg.AddProfile(new ProductProfile());
             }).CreateMapper()
-
             );
 
             return services;

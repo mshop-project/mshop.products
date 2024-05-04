@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
-using mshop.products.domain.Entities;
 using mshop.products.domain.Repositories.Products;
+using mshop.sharedkernel.coredata.Products;
 
 namespace mshop.products.application.Commands.Products.CreateProduct
 {

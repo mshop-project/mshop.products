@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace mshop.products.application.DTOs.Products
+﻿namespace mshop.products.application.DTOs.Products
 {
     public class CreateProductDto
     {

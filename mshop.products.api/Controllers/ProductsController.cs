@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using mshop.products.application.Commands.Products.CreateProduct;
 using mshop.products.application.DTOs.Products;
-using mshop.products.application.Queries.Categories.GetCategories;
-using mshop.products.application.Queries.Products;
 using mshop.products.application.Queries.Products.GetProducts;
 using mshop.products.application.Queries.Products.GetProductsByIds;
 

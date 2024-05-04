@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using mshop.products.domain.Entities;
 using mshop.products.domain.Repositories.Categories;
 using mshop.products.infrastructure.Persistence;
+using mshop.sharedkernel.coredata.Products;
 
 namespace mshop.products.infrastructure.Repositories.Categories
 {

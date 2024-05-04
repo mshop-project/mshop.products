@@ -1,4 +1,6 @@
-﻿using mshop.products.application;
+﻿using MassTransit;
+using mshop.products.api.BusHandlers;
+using mshop.products.application;
 using mshop.products.infrastructure;
 
 namespace mshop.products.api
@@ -10,6 +12,12 @@ namespace mshop.products.api
             return services
                 .AddInfrastructure(configuration)
                 .AddApplication(); 
+        }
+
+        public static IBusRegistrationConfigurator AddProductsBusConfig(this IBusRegistrationConfigurator config)
+        {
+            config.AddConsumer<GetProductConsumer>();
+            return config;
         }
     }
 }

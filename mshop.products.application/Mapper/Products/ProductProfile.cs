@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using mshop.products.application.DTOs.Products;
-using mshop.products.domain.Entities;
+using mshop.sharedkernel.coredata.Products;
 
 namespace mshop.products.application.Mapper.Products
 {
@@ -11,6 +11,8 @@ namespace mshop.products.application.Mapper.Products
             CreateMap<CreateProductDto, Product>();
             CreateMap<Product, ReadProductDto>()
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category));
+            CreateMap<ReadProductDto, Product>()
+                    .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category));
         } 
     }
 }

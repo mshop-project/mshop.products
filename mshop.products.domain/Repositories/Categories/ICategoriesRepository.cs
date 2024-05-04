@@ -1,4 +1,4 @@
-﻿using mshop.products.domain.Entities;
+﻿using mshop.sharedkernel.coredata.Products;
 
 namespace mshop.products.domain.Repositories.Categories
 {

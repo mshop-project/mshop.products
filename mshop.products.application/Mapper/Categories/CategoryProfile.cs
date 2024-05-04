@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using mshop.products.application.DTOs.Categories;
-using mshop.products.domain.Entities;
+using mshop.sharedkernel.coredata.Products;
 
 namespace mshop.products.application.Mapper.Categories
 {
@@ -9,7 +9,9 @@ namespace mshop.products.application.Mapper.Categories
         public CategoryProfile()
         { 
             CreateMap <CreateCategoryDto, Category>();
+            CreateMap <Category, CreateCategoryDto>();
             CreateMap <Category, ReadCategoryDto>();
+            CreateMap <ReadCategoryDto, Category>();
         }
     }
 }

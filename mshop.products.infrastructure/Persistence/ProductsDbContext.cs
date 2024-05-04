@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using mshop.products.domain.Entities;
+using mshop.sharedkernel.coredata.Products;
 
 namespace mshop.products.infrastructure.Persistence
 {
@@ -31,7 +31,8 @@ namespace mshop.products.infrastructure.Persistence
                 entity.Property(p => p.Name)
                     .IsRequired();
 
-                entity.Property(p => p.Description);
+                entity
+                .Property(p => p.Description);
 
                 entity.Property(p => p.ImageUrl);
 
