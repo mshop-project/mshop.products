@@ -1,3 +1,4 @@
+using MassTransit;
 using mshop.products.api;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,24 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddMassTransit(busConfigurator =>
+{
+    busConfigurator.SetKebabCaseEndpointNameFormatter();
+
+    busConfigurator.AddProductsBusConfig();
+
+    busConfigurator.UsingRabbitMq((context, config) =>
+    {
+        config.Host("localhost", "/", hostConfigurator =>
+        {
+            hostConfigurator.Username("guest");
+            hostConfigurator.Password("guest");
+        });
+
+        config.ConfigureEndpoints(context);
+    });
+});
 
 builder.Services.AddCors(options =>
     options.AddPolicy(name: "CORS",
