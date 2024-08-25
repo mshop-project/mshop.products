@@ -9,13 +9,15 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["mshop.products.api/mshop.products.api.csproj", "mshop.products.api/"]
-COPY ["mshop.products.application/mshop.products.application.csproj", "mshop.products.application/"]
-COPY ["mshop.products.domain/mshop.products.domain.csproj", "mshop.products.domain/"]
-COPY ["mshop.products.infrastructure/mshop.products.infrastructure.csproj", "mshop.products.infrastructure/"]
-RUN dotnet restore "./mshop.products.api/./mshop.products.api.csproj"
+COPY ["mshop.products/mshop.products.api/mshop.products.api.csproj", "mshop.products/mshop.products.api/"]
+COPY ["mshop.products/mshop.products.application/mshop.products.application.csproj", "mshop.products/mshop.products.application/"]
+COPY ["mshop.products/mshop.products.domain/mshop.products.domain.csproj", "mshop.products/mshop.products.domain/"]
+COPY ["mshop.sharedkernel.coredata/mshop.sharedkernel.coredata.csproj", "mshop.sharedkernel.coredata/"]
+COPY ["mshop.products/mshop.products.infrastructure/mshop.products.infrastructure.csproj", "mshop.products/mshop.products.infrastructure/"]
+COPY ["mshop.sharedkernel.messaging/mshop.sharedkernel.messaging.csproj", "mshop.sharedkernel.messaging/"]
+RUN dotnet restore "./mshop.products/mshop.products.api/mshop.products.api.csproj"
 COPY . .
-WORKDIR "/src/mshop.products.api"
+WORKDIR "/src/mshop.products/mshop.products.api"
 RUN dotnet build "./mshop.products.api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

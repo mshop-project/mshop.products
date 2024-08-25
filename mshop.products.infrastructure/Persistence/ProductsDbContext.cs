@@ -14,7 +14,7 @@ namespace mshop.products.infrastructure.Persistence
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Products;Username=root;Password=password;");
+            optionsBuilder.UseNpgsql("Host=postgresdb;Port=5432;Database=Products;Username=root;Password=password;");
 
         public DbSet<Product> Products {  get; set; }
         public DbSet<Category> Categories {  get; set; }

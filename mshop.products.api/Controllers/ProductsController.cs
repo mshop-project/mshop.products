@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using mshop.products.application.Commands.Products.CreateProduct;
+using mshop.products.application.Commands.Products.DeleteProduct;
+using mshop.products.application.Commands.Products.UpdateProduct;
 using mshop.products.application.DTOs.Products;
 using mshop.products.application.Queries.Products.GetProducts;
 using mshop.products.application.Queries.Products.GetProductsByIds;
@@ -18,14 +20,28 @@ namespace mshop.products.api.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("")]
+        [HttpPost()]
         public async Task<IActionResult> CreateProduct([FromBody] CreateProductDto productDto)
         {
             await _mediator.Send(new CreateProductCommand(productDto));
             return Ok();
         }
 
-        [HttpGet("")]
+        [HttpPut("{productId}")]
+        public async Task<IActionResult> UpdateProduct(Guid productId, [FromBody] UpdateProductDto productDto)
+        {
+            await _mediator.Send(new UpdateProductCommand(productId, productDto));
+            return Ok();
+        }
+
+        [HttpDelete("{productId}")]
+        public async Task<IActionResult> DeleteProduct(Guid productId)
+        {
+            await _mediator.Send(new DeleteProductCommand(productId));
+            return Ok();
+        }
+
+        [HttpGet()]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ReadProductDto>))]
         public async Task<IActionResult> GetProducts()
         {

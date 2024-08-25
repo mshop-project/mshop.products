@@ -9,6 +9,7 @@ namespace mshop.products.application.Mapper.Products
         public ProductProfile() 
         {
             CreateMap<CreateProductDto, Product>();
+            CreateMap<UpdateProductDto, Product>();
             CreateMap<Product, ReadProductDto>()
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category));
             CreateMap<ReadProductDto, Product>()

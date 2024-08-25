@@ -1,5 +1,9 @@
 using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using mshop.products.api;
+using mshop.products.infrastructure.Persistence;
+using Steeltoe.Discovery.Client;
+using Steeltoe.Discovery.Consul;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +16,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddServiceDiscovery(o => o.UseConsul());
+
 builder.Services.AddMassTransit(busConfigurator =>
 {
     busConfigurator.SetKebabCaseEndpointNameFormatter();
@@ -20,7 +26,7 @@ builder.Services.AddMassTransit(busConfigurator =>
 
     busConfigurator.UsingRabbitMq((context, config) =>
     {
-        config.Host("localhost", "/", hostConfigurator =>
+        config.Host("rabbitmq", "/", hostConfigurator =>
         {
             hostConfigurator.Username("guest");
             hostConfigurator.Password("guest");
@@ -41,17 +47,28 @@ builder.Services.AddCors(options =>
             }));
 
 var app = builder.Build();
-
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ProductsDbContext>();
+    try
+    {
+        await dbContext.Database.MigrateAsync();
+    }
+    catch (Exception ex)
+    {
+        // Logowanie lub obs³uga b³êdów
+        Console.WriteLine($"An error occurred while migrating the database: {ex.Message}");
+    }
+}
 app.UseCors("CORS");
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+
     app.UseSwagger();
     app.UseSwaggerUI();
-}
 
-app.UseHttpsRedirection();
+
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
